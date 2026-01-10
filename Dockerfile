@@ -2,7 +2,7 @@
 FROM eclipse-temurin:21-jre-alpine AS runtime
 
 # Add opentelemetry java agent
-ADD ./opentelemetry-javaagent.jar /opt/opentelemetry-javaagent.jar -Dotel.metrics.exporter=none
+ADD ./opentelemetry-javaagent.jar /opt/opentelemetry-javaagent.jar
 
 # Create a non-root user for security
 RUN addgroup -S spring && adduser -S spring -G spring
@@ -23,5 +23,5 @@ USER spring:spring
 EXPOSE 8080
 
 # Run the application
-ENTRYPOINT ["java", "-javaagent:/opt/opentelemetry-javaagent.jar", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-javaagent:/opt/opentelemetry-javaagent.jar", "-Dotel.metrics.exporter=none", "-jar", "app.jar"]
 
