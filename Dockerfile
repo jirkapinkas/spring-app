@@ -23,5 +23,5 @@ USER spring:spring
 EXPOSE 8080
 
 # Run the application
-ENTRYPOINT ["java", "-javaagent:/opt/opentelemetry-javaagent.jar", "-Dotel.metrics.exporter=none", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-javaagent:/opt/opentelemetry-javaagent.jar", "-jar", "app.jar"]
 
